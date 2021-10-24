@@ -4,6 +4,7 @@ specifiers:
   '@nomiclabs/hardhat-ethers': ^2.0.2
   '@nomiclabs/hardhat-etherscan': ^2.1.7
   '@nomiclabs/hardhat-waffle': ^2.0.1
+  '@openzeppelin/contracts': ^4.3.2
   '@typechain/ethers-v5': ^7.2.0
   '@typechain/hardhat': ^2.3.1
   '@types/chai': ^4.2.22
@@ -36,6 +37,7 @@ devDependencies:
   '@nomiclabs/hardhat-ethers': 2.0.2_ethers@5.5.1+hardhat@2.6.7
   '@nomiclabs/hardhat-etherscan': 2.1.7_hardhat@2.6.7
   '@nomiclabs/hardhat-waffle': 2.0.1_1c9cd65595a3655be9c549f07608e278
+  '@openzeppelin/contracts': 4.3.2
   '@typechain/ethers-v5': 7.2.0_c590682d5c52f73689313abb2342ef5d
   '@typechain/hardhat': 2.3.1_hardhat@2.6.7+typechain@5.2.0
   '@types/chai': 4.2.22
@@ -692,6 +694,10 @@ packages:
       ethereum-waffle: 3.4.0_typescript@4.4.4
       ethers: 5.5.1
       hardhat: 2.6.7
+    dev: true
+
+  /@openzeppelin/contracts/4.3.2:
+    resolution: {integrity: sha512-AybF1cesONZStg5kWf6ao9OlqTZuPqddvprc0ky7lrUVOjXeKpmQ2Y9FK+6ygxasb+4aic4O5pneFBfwVsRRRg==}
     dev: true
 
   /@resolver-engine/core/0.3.3:

@@ -2,9 +2,15 @@
 pragma solidity ^0.8.0;
 
 import "./zombiehelper.sol";
+import "./safemath.sol";
 
 contract ZombieAttack is ZombieHelper {
-  uint randNonce = 0;
+
+  using SafeMath for uint256;
+  using SafeMath32 for uint32;
+  using SafeMath16 for uint16;
+
+  uint256 randNonce = 0;
   uint attackVictoryProbability = 70;
 
   function randMod(uint _modulus) internal returns (uint) {
