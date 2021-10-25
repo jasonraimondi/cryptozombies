@@ -1,6 +1,8 @@
 {
   "name": "cryptozombies",
   "scripts": {
+    "test": "hardhat test",
+    "node": "hardhat node",
     "compile": "hardhat compile"
   },
   "devDependencies": {

@@ -28,7 +28,14 @@ contract ZombieFactory is Ownable {
   Zombie[] public zombies;
 
   mapping(uint => address) public zombieToOwner;
-  mapping(address => uint) ownerZombieCount;
+  mapping(address => uint) public ownerZombieCount;
+
+  function createRandomZombie(string memory _name) public {
+    require(ownerZombieCount[msg.sender] == 0);
+    uint randDna = _generateRandomDna(_name);
+    randDna = randDna - randDna % 100;
+    _createZombie(_name, randDna);
+  }
 
   function _createZombie(string memory _name, uint _dna) internal {
     zombies.push(Zombie(_name, _dna, 1, uint32(block.timestamp + cooldownTime), 0, 0));
@@ -42,12 +49,4 @@ contract ZombieFactory is Ownable {
     uint rand = uint(keccak256(abi.encodePacked(_str)));
     return rand % dnaModulus;
   }
-
-  function createRandomZombie(string memory _name) public {
-    require(ownerZombieCount[msg.sender] == 0);
-    uint randDna = _generateRandomDna(_name);
-    randDna = randDna - randDna % 100;
-    _createZombie(_name, randDna);
-  }
-
 }

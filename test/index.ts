@@ -1,19 +1,35 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-describe("Greeter", function () {
+describe("ZombieFactory", function () {
   it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+    const [userAccount] = await ethers.getSigners();
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
+    const ZombieFactory = await ethers.getContractFactory("ZombieFactory");
+    const factory = await ZombieFactory.deploy();
+    await factory.deployed();
 
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
+    const ZombieHelper = await ethers.getContractFactory("ZombieHelper");
+    const helper = await ZombieHelper.deploy();
+    await helper.deployed();
 
+    const createZombie = await factory.createRandomZombie("Fred Zombie");
+    await createZombie.wait();
+
+    const result = await helper.getZombiesByOwner(userAccount.address);
+
+    expect(result).to.have.length(1);
+    // if (web3.eth.accounts[0] !== userAccount) {
+    //   userAccount = web3.eth.accounts[0];
+    //
+    //   getZombiesByOwner(userAccount)
+    //     .then(displayZombies);
+    // }
+
+
+    // const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
     // wait until the transaction is mined
-    await setGreetingTx.wait();
-
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+    // await setGreetingTx.wait();
+    // expect(await greeter.greet()).to.equal("Hola, mundo!");
   });
 });
