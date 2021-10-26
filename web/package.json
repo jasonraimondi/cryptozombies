@@ -10,6 +10,15 @@
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
   },
+  "dependencies": {
+    "@ethersproject/abi": "^5.4.1",
+    "@ethersproject/abstract-provider": "^5.4.1",
+    "@ethersproject/bignumber": "^5.4.2",
+    "@ethersproject/bytes": "^5.4.0",
+    "@ethersproject/contracts": "^5.4.1",
+    "@ethersproject/providers": "^5.4.5",
+    "@ethersproject/solidity": "^5.4.0"
+  },
   "devDependencies": {
     "@sveltejs/kit": "next",
     "prettier": "^2.4.1",
