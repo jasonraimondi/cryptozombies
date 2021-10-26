@@ -1,28 +1,33 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-describe("ZombieFactory", function () {
-  it("should allow a user to create 1 zombie", async function () {
-    const [owner, addr1] = await ethers.getSigners();
+import type { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import type { Contract } from "ethers";
+import { BigNumber } from "ethers";
 
-    // const ZombieFactory = await ethers.getContractFactory("ZombieFactory");
-    // const factory = await ZombieFactory.deploy();
-    // await factory.deployed();
+describe("ZombieOwnership", function () {
 
-    const ZombieHelper = await ethers.getContractFactory("ZombieHelper");
-    const helper = await ZombieHelper.deploy();
-    await helper.deployed();
+  let zombies: Contract;
+  let owner: SignerWithAddress;
+  let addr1: SignerWithAddress;
+  let addr2: SignerWithAddress;
+  let addr3: SignerWithAddress;
 
-    console.log("this is NOT IT", owner.address);
-    console.log("this is the owner", addr1.address);
+  beforeEach(async () => {
+    [owner, addr1, addr2, addr3] = await ethers.getSigners();
+    console.log("contract owner", owner.address);
+    console.log("zombie owner", addr1.address);
+    const ZombieOwnership = await ethers.getContractFactory("ZombieOwnership");
+    zombies = await ZombieOwnership.deploy();
+    await zombies.deployed();
+  });
 
-    const createZombie = await helper
-      .connect(addr1)
-      .createRandomZombie("Fred Zombie");
+  it("allows a user to create 1 zombie", async function () {
+    const createZombie = await zombies.connect(addr1).createRandomZombie("Fred Zombie");
     await createZombie.wait();
-
-    const result = await helper.getZombiesByOwner(addr1.address);
-
+    const result = await zombies.getZombiesByOwner(addr1.address);
     expect(result).to.have.length(1);
+    const foo: BigNumber = result[0];
+    console.log(foo.toJSON());
   });
 });

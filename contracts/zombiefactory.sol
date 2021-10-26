@@ -3,7 +3,6 @@ pragma solidity ^0.8.0;
 
 import "./ownable.sol";
 import "./safemath.sol";
-import "hardhat/console.sol";
 
 contract ZombieFactory is Ownable {
 
@@ -32,8 +31,7 @@ contract ZombieFactory is Ownable {
   mapping(address => uint) public ownerZombieCount;
 
   function createRandomZombie(string memory _name) public {
-    console.log("this is the owner %s", msg.sender);
-    require(ownerZombieCount[msg.sender] == 0);
+    require(ownerZombieCount[msg.sender] == 0, "You can only create one zombie!");
     uint randDna = _generateRandomDna(_name);
     randDna = randDna - randDna % 100;
     _createZombie(_name, randDna);
