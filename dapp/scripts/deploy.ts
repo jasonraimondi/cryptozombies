@@ -14,31 +14,7 @@ async function main() {
 
   await zombieOwnership.deployed();
 
-  console.log("Greeter deployed to:", zombieOwnership.address);
-  saveFrontendFiles(zombieOwnership);
-
-}
-
-
-function saveFrontendFiles(contract: ZombieOwnership) {
-  const fs = require("fs");
-  const contractsDir = __dirname + "/../web/src/lib/contracts";
-
-  if (!fs.existsSync(contractsDir)) {
-    fs.mkdirSync(contractsDir);
-  }
-
-  fs.writeFileSync(
-    contractsDir + "/contract-address.json",
-    JSON.stringify({ ZombieOwnership: contract.address }, undefined, 2)
-  );
-
-  const ZombieOwnershipArtifact = artifacts.readArtifactSync("ZombieOwnership");
-
-  fs.writeFileSync(
-    contractsDir + "/ZombieOwnership.json",
-    JSON.stringify(ZombieOwnershipArtifact, null, 2)
-  );
+  console.log("ZombieOwnership deployed to:", zombieOwnership.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -1,5 +1,6 @@
 {
   "name": "@jmondi/cryptozombies",
+  "version": "0.0.1",
   "scripts": {
     "test": "hardhat test",
     "node": "hardhat node",
