@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
   import { resetState, state } from "$lib/state";
 
   function initialize(userAddress: string) {
     // This method initializes the dapp
 
     // We first store the user's address in the component's state
-    state.update(s => ({ ...s, selectedAddress: userAddress }))
+    state.update((s: any) => ({ ...s, selectedAddress: userAddress }))
 
     // Then, we initialize ethers, fetch the token's data, and start polling
     // for the user's balance.

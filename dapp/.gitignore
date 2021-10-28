@@ -9,4 +9,4 @@ cache
 artifacts
 
 #Intellij
-.idea
+../.idea

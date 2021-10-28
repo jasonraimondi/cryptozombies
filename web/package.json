@@ -17,7 +17,8 @@
     "@ethersproject/bytes": "^5.4.0",
     "@ethersproject/contracts": "^5.4.1",
     "@ethersproject/providers": "^5.4.5",
-    "@ethersproject/solidity": "^5.4.0"
+    "@ethersproject/solidity": "^5.4.0",
+    "@jmondi/cryptozombies": "workspace:^undefined"
   },
   "devDependencies": {
     "@sveltejs/kit": "next",
