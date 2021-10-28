@@ -3,23 +3,42 @@
 //
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
-import { ethers } from "hardhat";
+import { artifacts, ethers } from "hardhat";
+import { ZombieOwnership } from "../typechain";
+import { BaseContract } from "ethers";
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
-
   // We get the contract to deploy
-  const ZombieFactory = await ethers.getContractFactory("ZombieFactory");
-  const factory = await ZombieFactory.deploy();
+  const ZombieOwnership = await ethers.getContractFactory("ZombieOwnership");
+  const zombieOwnership = await ZombieOwnership.deploy();
 
-  await factory.deployed();
+  await zombieOwnership.deployed();
 
-  console.log("Greeter deployed to:", factory.address);
+  console.log("Greeter deployed to:", zombieOwnership.address);
+  saveFrontendFiles(zombieOwnership);
+
+}
+
+
+function saveFrontendFiles(contract: ZombieOwnership) {
+  const fs = require("fs");
+  const contractsDir = __dirname + "/../web/src/lib/contracts";
+
+  if (!fs.existsSync(contractsDir)) {
+    fs.mkdirSync(contractsDir);
+  }
+
+  fs.writeFileSync(
+    contractsDir + "/contract-address.json",
+    JSON.stringify({ ZombieOwnership: contract.address }, undefined, 2)
+  );
+
+  const ZombieOwnershipArtifact = artifacts.readArtifactSync("ZombieOwnership");
+
+  fs.writeFileSync(
+    contractsDir + "/ZombieOwnership.json",
+    JSON.stringify(ZombieOwnershipArtifact, null, 2)
+  );
 }
 
 // We recommend this pattern to be able to use async/await everywhere

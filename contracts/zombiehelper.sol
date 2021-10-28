@@ -41,7 +41,6 @@ contract ZombieHelper is ZombieFeeding {
   }
 
   function getZombiesByOwner(address _owner) external view returns (uint[] memory) {
-    console.log("get zombies for %s", _owner);
     uint[] memory result = new uint[](ownerZombieCount[_owner]);
     uint counter = 0;
     for (uint i = 0; i < zombies.length; i++) {
@@ -50,8 +49,6 @@ contract ZombieHelper is ZombieFeeding {
         counter++;
       }
     }
-    console.log("zombies count %s", zombies.length);
-    console.log("this is the result for %s", result.length);
     return result;
   }
 
