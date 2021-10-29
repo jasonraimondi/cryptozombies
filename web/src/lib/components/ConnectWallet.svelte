@@ -8,15 +8,13 @@ let provider;
 async function connectWallet() {
   provider = new ethers.providers.Web3Provider(window.ethereum)
 
-  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  const [currentAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-  console.log(accounts);
-
-  initialize(accounts);
+  initialize(currentAddress);
 
   // We reinitialize it whenever the user changes their account.
-  window.ethereum.on("accountsChanged", (accounts) => {
-    initialize(accounts);
+  window.ethereum.on("accountsChanged", ([currentAddress]) => {
+    initialize(currentAddress);
   });
 
   // // We reset the dapp state if the network is changed
@@ -25,8 +23,8 @@ async function connectWallet() {
   // });
 }
 
-function initialize(asdf: string[]) {
-  store.set(asdf);
+function initialize(currentAddress: string) {
+  store.set({ currentAddress });
 
   window.zombieOwnership = new ethers.Contract(
     import.meta.env.VITE_ZOMBIE_OWNERSHIP_ADDRESS,

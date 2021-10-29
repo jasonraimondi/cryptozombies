@@ -14,6 +14,6 @@
 
   <ul>
     <li>Contract Address: {import.meta.env.VITE_ZOMBIE_OWNERSHIP_ADDRESS}</li>
-    <li>Selected Address: {$store.selectedAddress}</li>
+    <li>Selected Address: {$store.currentAddress}</li>
   </ul>
 {/if}

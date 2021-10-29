@@ -1,5 +1,9 @@
 import { writable } from "svelte/store";
 
-const INITIAL_STATE = [];
+type State = {
+  currentAddress?: string;
+}
 
-export const store = writable<string[]>(INITIAL_STATE);
+const INITIAL_STATE: State = {};
+
+export const store = writable<State>(INITIAL_STATE);

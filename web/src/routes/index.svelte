@@ -6,24 +6,28 @@ import ConnectWallet from "$lib/components/ConnectWallet.svelte";
 
 $: isContractInitialized = browser && window.zombieOwnership === undefined;
 
-async function createZombieForAddress() {
-  await window.zombieOwnership.createRandomZombie("Ruby");
-
-  const [zombie1Id, ...extras] = await window.zombieOwnership.getZombiesByOwner($store[0]);
-  console.log(zombie1Id);
-  const zombie = await window.zombieOwnership.zombies(zombie1Id);
-
-  alert(zombie1Id);
-  console.log(zombie, extras)
+async function getZombies() {
+  return window.zombieOwnership.getZombiesByOwner($store.currentAddress);
 }
 
+async function getZombie(zombieId: string) {
+  return window.zombieOwnership.zombies(zombieId);
+}
+
+async function createZombie() {
+  await window.zombieOwnership.createRandomZombie("Ruby");
+  const zombies = await getZombies();
+  console.log({ zombies })
+  const zombie = await getZombie(zombies[0]);
+  console.log({ zombie })
+}
 </script>
 
-{#if $store.length === 0}
+{#if !$store.currentAddress}
   <ConnectWallet />
 {:else}
   {#if isContractInitialized}
-    <button on:click={createZombieForAddress}>Create Zombie</button>
+    <button on:click={createZombie}>Create Zombie</button>
   {:else}
     Nothing is here
   {/if}
