@@ -1,31 +1,32 @@
-<script>
-import TokenArtifact from "@jmondi/cryptozombies/artifacts/contracts/zombieownership.sol/ZombieOwnership.json";
+<script lang="ts">
 import { browser } from '$app/env';
 
-import { state } from "$lib/state";
+import { store } from "$lib/store";
 import ConnectWallet from "$lib/components/ConnectWallet.svelte";
 
-$: noWalletDetected = browser && window.ethereum === undefined;
+$: isContractInitialized = browser && window.zombieOwnership === undefined;
 
+async function createZombieForAddress() {
+  await window.zombieOwnership.createRandomZombie("Ruby");
+
+  const [zombie1Id, ...extras] = await window.zombieOwnership.getZombiesByOwner($store[0]);
+  console.log(zombie1Id);
+  const zombie = await window.zombieOwnership.zombies(zombie1Id);
+
+  alert(zombie1Id);
+  console.log(zombie, extras)
+}
 
 </script>
 
-{#if noWalletDetected}
-	<p>NO WALLET DETECTED</p>
+{#if $store.length === 0}
+  <ConnectWallet />
 {:else}
-  {#if !$state.selectedAddress}
-    <ConnectWallet />
+  {#if isContractInitialized}
+    <button on:click={createZombieForAddress}>Create Zombie</button>
   {:else}
-    {#if !$state.tokenData || !$state.balance}
-      <p>loading...</p>;
-    {/if}
+    Nothing is here
   {/if}
 {/if}
 
-<div>
-  <pre><code>{JSON.stringify($state)}</code></pre>
-</div>
-
-<div>
-  <pre><code>{JSON.stringify(TokenArtifact, null, 2)}</code></pre>
-</div>
+{JSON.stringify($store)}

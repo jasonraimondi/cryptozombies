@@ -5,7 +5,8 @@
     "test": "hardhat test",
     "node": "hardhat node",
     "compile": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.ts"
+    "deploy": "hardhat run scripts/deploy.ts",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
@@ -26,7 +27,7 @@
     "hardhat": "^2.6.7",
     "hardhat-gas-reporter": "^1.0.4",
     "prettier": "^2.4.1",
-    "prettier-plugin-solidity": "^1.0.0-beta.13",
+    "prettier-plugin-solidity": "^1.0.0-beta.18",
     "solhint": "^3.3.6",
     "solidity-coverage": "^0.7.17",
     "ts-node": "^10.4.0",
