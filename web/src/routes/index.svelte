@@ -22,8 +22,8 @@ let zombie;
 async function createZombie() {
   await window.zombieOwnership.createRandomZombie("Ruby").catch(() => {});
   const [id] = await getZombies();
-  zombie = await getZombie(id);
-  console.log({ zombie })
+  if (id) zombie = await getZombie(id);
+  console.log({ id, zombie })
 }
 </script>
 
@@ -37,14 +37,14 @@ async function createZombie() {
   {/if}
 {/if}
 
-{JSON.stringify($store)}
+Hi ya
 
 {#if zombie}
-<div>
-  <p>id: {zombie.id}</p>
-  <p>dna: {zombie.dna}</p>
-  <p>name: {zombie.name}</p>
-  <p>winCount: {zombie.winCount}</p>
-  <p>lossCount: {zombie.lossCount}</p>
-</div>
+<ul>
+  <li>id: {zombie.id}</li>
+  <li>dna: {zombie.dna}</li>
+  <li>name: {zombie.name}</li>
+  <li>winCount: {zombie.winCount}</li>
+  <li>lossCount: {zombie.lossCount}</li>
+</ul>
 {/if}

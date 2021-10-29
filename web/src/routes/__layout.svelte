@@ -1,11 +1,15 @@
 <script lang="ts">
-  import { browser } from "$app/env";
   import { store } from "$lib/store";
+  import { initialize } from "$lib/ethereum";
+  import { onMount } from "svelte";
+  import Debugger from "$lib/components/Debugger.svelte";
 
-  $: noWalletDetected = browser && window.ethereum === undefined;
+  onMount(() => {
+    initialize();
+  })
 </script>
 
-{#if noWalletDetected}
+{#if !$store.isWeb3}
 	<p>Install Metamask</p>
 {:else}
   <slot />
@@ -17,3 +21,5 @@
     <li>Selected Address: {$store.currentAddress}</li>
   </ul>
 {/if}
+
+<Debugger />

@@ -1,7 +1,11 @@
 /// <reference types="@sveltejs/kit" />
 /// <reference types="ethers" />
 
-interface Window {
-    ethereum: any;
-    zombieOwnership: any;
+import type { ZombieOwnership } from "@jmondi/cryptozombies/typechain/ZombieOwnership";
+
+declare global {
+    interface Window {
+        ethereum: any;
+        zombieOwnership: ZombieOwnership;
+    }
 }
