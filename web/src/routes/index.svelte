@@ -3,6 +3,7 @@
   import { createZombie, getZombie, getZombies } from "$lib/api/zombie_ownership";
 
   let zombie;
+  let zombies = [];
 
   async function create() {
     await createZombie();
@@ -10,13 +11,30 @@
 
   async function find() {
     const address = $store.currentAddress;
-    const [id] = await getZombies(address);
-    if (id) zombie = await getZombie(id);
+    zombies = await getZombies(address);
+    if (zombies[0]) {
+      zombie = await getZombie(zombies[0]);
+    }
   }
 </script>
 
+<style>
+  .well {
+    background-color: tomato;
+    color: white;
+  }
+</style>
+
 <button on:click={create}>Create Zombie</button>
 <button on:click={find}>Find Zombie</button>
+
+{#if zombies}
+  <ul>
+    {#each zombies as z}
+      <li>id: {z.toString()}</li>
+    {/each}
+  </ul>
+{/if}
 
 {#if zombie}
   <ul class="well">
@@ -27,10 +45,3 @@
     <li>lossCount: {zombie.lossCount}</li>
   </ul>
 {/if}
-
-<style>
-  .well {
-    background-color: tomato;
-    color: white;
-  }
-</style>
