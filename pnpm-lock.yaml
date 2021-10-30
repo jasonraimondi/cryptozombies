@@ -29,15 +29,15 @@ importers:
       solhint: ^3.3.6
       solidity-coverage: ^0.7.17
       ts-node: ^10.4.0
-      typechain: ^6.0.0
+      typechain: ^6.0.1
       typescript: ^4.4.4
     devDependencies:
       '@nomiclabs/hardhat-ethers': 2.0.2_ethers@5.5.1+hardhat@2.6.7
       '@nomiclabs/hardhat-etherscan': 2.1.7_hardhat@2.6.7
       '@nomiclabs/hardhat-waffle': 2.0.1_1c9cd65595a3655be9c549f07608e278
       '@openzeppelin/contracts': 4.3.2
-      '@typechain/ethers-v5': 8.0.0_aa83f33d4f339b8dffe0776824730741
-      '@typechain/hardhat': 3.0.0_hardhat@2.6.7+typechain@6.0.0
+      '@typechain/ethers-v5': 8.0.0_e33f1cdb2d55227689f27fa7ce1e0307
+      '@typechain/hardhat': 3.0.0_hardhat@2.6.7+typechain@6.0.1
       '@types/chai': 4.2.22
       '@types/mocha': 9.0.0
       '@types/node': 16.11.6
@@ -54,7 +54,7 @@ importers:
       solhint: 3.3.6
       solidity-coverage: 0.7.17
       ts-node: 10.4.0_0cb88d80cb04d25b21fa3ec194608c65
-      typechain: 6.0.0_typescript@4.4.4
+      typechain: 6.0.1_typescript@4.4.4
       typescript: 4.4.4
 
   web:
@@ -77,6 +77,7 @@ importers:
       svelte-preprocess: ^4.9.8
       tslib: ^2.3.1
       typescript: ^4.4.4
+      xstate: ^4.25.0
     dependencies:
       '@ethersproject/abi': 5.5.0
       '@ethersproject/abstract-provider': 5.5.1
@@ -88,6 +89,7 @@ importers:
       '@jmondi/cryptozombies': link:../dapp
       dotenv: 10.0.0
       ethers: 5.5.1
+      xstate: 4.25.0
     devDependencies:
       '@sveltejs/kit': 1.0.0-next.192_svelte@3.44.0
       prettier: 2.4.1
@@ -906,7 +908,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@typechain/ethers-v5/8.0.0_aa83f33d4f339b8dffe0776824730741:
+  /@typechain/ethers-v5/8.0.0_e33f1cdb2d55227689f27fa7ce1e0307:
     resolution: {integrity: sha512-i2H/G6YZs8fAxXwQ2jtkrsuH9mbZ6TqIzt0j208dX0rnDD66Dllk9lJcJpSuLYzTvf+o5tNe75si1dFLbjMmZQ==}
     peerDependencies:
       '@ethersproject/abi': ^5.0.0
@@ -919,11 +921,11 @@ packages:
       ethers: 5.5.1
       lodash: 4.17.21
       ts-essentials: 7.0.3_typescript@4.4.4
-      typechain: 6.0.0_typescript@4.4.4
+      typechain: 6.0.1_typescript@4.4.4
       typescript: 4.4.4
     dev: true
 
-  /@typechain/hardhat/3.0.0_hardhat@2.6.7+typechain@6.0.0:
+  /@typechain/hardhat/3.0.0_hardhat@2.6.7+typechain@6.0.1:
     resolution: {integrity: sha512-FpnIIXkDXm54XCHI/Z2iOet7h1MrFSvZfuljX9Uzc6FEjEfb01Tuzu8ywe2iquD3g5JXqovgdv+M54L/2Z6jkg==}
     peerDependencies:
       hardhat: ^2.0.10
@@ -932,7 +934,7 @@ packages:
     dependencies:
       fs-extra: 9.1.0
       hardhat: 2.6.7
-      typechain: 6.0.0_typescript@4.4.4
+      typechain: 6.0.1_typescript@4.4.4
     dev: true
 
   /@types/abstract-leveldown/5.0.2:
@@ -8823,8 +8825,8 @@ packages:
       - typescript
     dev: true
 
-  /typechain/6.0.0_typescript@4.4.4:
-    resolution: {integrity: sha512-qKCgioqC4NywVe/lvOkZzG+UGAZc3kqyZ2WU7OUEJC7Wdo5l5zNrnUQPeXdWByN8M5/8ahQjidI3Ul1vUHSKJw==}
+  /typechain/6.0.1_typescript@4.4.4:
+    resolution: {integrity: sha512-R9s12Tvx9hLuGv/jej/92D9JSzvTi0CT39gNipjQlzOQdsy1jnszEmoSN6JX+LVq/cwSVobtfs832qJozskEIQ==}
     hasBin: true
     peerDependencies:
       typescript: '>=4.1.0'
@@ -9828,6 +9830,10 @@ packages:
     resolution: {integrity: sha1-Z/4HXFwk/vOfnWX197f+dRcZaPw=}
     engines: {node: '>=0.4.0'}
     dev: true
+
+  /xstate/4.25.0:
+    resolution: {integrity: sha512-qP7lc/ypOuuWME4ArOBnzaCa90TfHkjiqYDmxpiCjPy6FcXstInA2vH6qRVAHbPXRK4KQIYfIEOk1X38P+TldQ==}
+    dev: false
 
   /xtend/2.1.2:
     resolution: {integrity: sha1-bv7MKk2tjmlixJAbM3znuoe10os=}

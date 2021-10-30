@@ -5,13 +5,7 @@
 
 <div class="alert alert-danger" role="alert">
   {message}
-  <button
-    type="button"
-    class="close"
-    data-dismiss="alert"
-    aria-label="Close"
-    onclick={dismiss}
-  >
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick={dismiss}>
     <span aria-hidden="true">&times;</span>
   </button>
 </div>

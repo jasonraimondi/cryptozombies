@@ -6,11 +6,11 @@
 
   onMount(() => {
     initialize();
-  })
+  });
 </script>
 
 {#if !$store.isWeb3}
-	<p>Install Metamask</p>
+  <p>Install Metamask</p>
 {:else}
   <slot />
 
