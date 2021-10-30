@@ -1,7 +1,6 @@
 import { writable } from "svelte/store";
 
 type State = {
-  isWeb3?: boolean;
   currentAddress?: string;
 };
 

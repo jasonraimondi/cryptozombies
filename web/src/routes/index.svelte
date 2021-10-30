@@ -15,13 +15,6 @@
   }
 </script>
 
-<style>
-  .well {
-    background-color: tomato;
-    color: white;
-  }
-</style>
-
 <button on:click={create}>Create Zombie</button>
 <button on:click={find}>Find Zombie</button>
 
@@ -34,3 +27,10 @@
     <li>lossCount: {zombie.lossCount}</li>
   </ul>
 {/if}
+
+<style>
+  .well {
+    background-color: tomato;
+    color: white;
+  }
+</style>
