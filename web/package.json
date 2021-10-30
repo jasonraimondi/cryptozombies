@@ -20,7 +20,8 @@
     "@ethersproject/solidity": "^5.5.0",
     "@jmondi/cryptozombies": "workspace:^0.0.1",
     "dotenv": "^10.0.0",
-    "ethers": "^5.5.1"
+    "ethers": "^5.5.1",
+    "xstate": "^4.25.0"
   },
   "devDependencies": {
     "@sveltejs/kit": "next",

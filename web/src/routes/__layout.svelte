@@ -1,25 +1,25 @@
 <script lang="ts">
-  import { store } from "$lib/store";
-  import { initialize } from "$lib/ethereum";
   import { onMount } from "svelte";
-  import Debugger from "$lib/components/Debugger.svelte";
 
-  onMount(() => {
-    initialize();
-  });
+  import { initEthereum } from "$lib/ethereum";
+  import { walletService } from "$lib/machines/wallet";
+
+  import Debugger from "$lib/components/Debugger.svelte";
+  import ConnectWallet from "$lib/components/ConnectWallet.svelte";
+
+  onMount(initEthereum);
 </script>
 
-{#if !$store.isWeb3}
-  <p>Install Metamask</p>
-{:else}
+{#if $walletService.matches("init")}
+  <p>Checking for Ethereum</p>
+{:else if $walletService.matches("no_ethereum")}
+  <p>Install Metamask to get started</p>
+{:else if $walletService.matches("ethereum")}
+  <ConnectWallet />
+{:else if $walletService.matches("no_wallet")}
+  <p>I couldnt find a wallet address...</p>
+{:else if $walletService.matches("with_wallet")}
   <slot />
-
-  <hr />
-
-  <ul>
-    <li>Contract Address: {import.meta.env.VITE_ZOMBIE_OWNERSHIP_ADDRESS}</li>
-    <li>Selected Address: {$store.currentAddress}</li>
-  </ul>
 {/if}
 
 <Debugger />
