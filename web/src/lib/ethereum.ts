@@ -47,7 +47,7 @@ export async function connectWallet() {
 
 function _load() {
   if (typeof import.meta.env.VITE_ZOMBIE_OWNERSHIP_ADDRESS !== "string") {
-    throw new Error("missing zombie ownership address");
+    throw new Error("missing zombie ownership contract address");
   }
 
   const { ethereum } = window;
