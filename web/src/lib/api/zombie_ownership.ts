@@ -15,8 +15,8 @@ export async function getZombie(zombieId: string | BigNumber) {
   return { id: zombieId, ...zombie };
 }
 
-export async function createZombie() {
-  await tryIt(zombieOwnership.createRandomZombie("Ruby"));
+export async function createZombie(name: string) {
+  await tryIt(zombieOwnership.createRandomZombie(name));
 }
 
 async function tryIt<T = any>(attempt: Readonly<Promise<T>>) {

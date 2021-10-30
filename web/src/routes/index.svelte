@@ -5,8 +5,10 @@
   let zombie;
   let zombies = [];
 
+  let zombieName: string;
+
   async function create() {
-    await createZombie();
+    await createZombie(zombieName);
   }
 
   async function find() {
@@ -24,6 +26,8 @@
     color: white;
   }
 </style>
+
+<input type="text" bind:value={zombieName}>
 
 <button on:click={create}>Create Zombie</button>
 <button on:click={find}>Find Zombie</button>
