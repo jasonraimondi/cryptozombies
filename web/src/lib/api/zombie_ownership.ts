@@ -22,11 +22,14 @@ export async function createZombie() {
 }
 
 async function tryIt<T = any>(attempt: Readonly<Promise<T>>) {
-  const callable = async () => attempt;
+  const callable = () => attempt;
   try {
     return await callable();
   } catch (e) {
-    if (e.code === 4001) {
+    if (e.data.message) {
+      const contractErrorMessage = e.data.message.split("'")[1];
+      console.log(contractErrorMessage);
+    } else if (e.code === 4001) {
       console.log("User cancelled the transaction");
     } else {
       console.log(JSON.stringify(e));
