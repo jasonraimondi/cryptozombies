@@ -1,15 +1,9 @@
 <script lang="ts">
   import { store } from "$lib/store";
-  import { createZombie, getZombie, getZombies } from "$lib/api/zombie_ownership";
+  import { getZombie, getZombies } from "$lib/api/zombie_ownership";
 
   let zombie;
   let zombies = [];
-
-  let zombieName: string;
-
-  async function create() {
-    await createZombie(zombieName);
-  }
 
   async function find() {
     const address = $store.currentAddress;
@@ -20,16 +14,6 @@
   }
 </script>
 
-<style>
-  .well {
-    background-color: tomato;
-    color: white;
-  }
-</style>
-
-<input type="text" bind:value={zombieName}>
-
-<button on:click={create}>Create Zombie</button>
 <button on:click={find}>Find Zombie</button>
 
 {#if zombies}
@@ -49,3 +33,10 @@
     <li>lossCount: {zombie.lossCount}</li>
   </ul>
 {/if}
+
+<style>
+  .well {
+    background-color: tomato;
+    color: white;
+  }
+</style>

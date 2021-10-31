@@ -1,0 +1,34 @@
+html,
+body,
+#_app {
+  height: 100%;
+  width: 100%;
+}
+
+#_app {
+  display: grid;
+  grid-template-areas:
+    "main"
+    "debug-bar";
+  grid-template-columns: auto;
+  grid-template-rows: 1fr auto;
+
+  main {
+    grid-area: main;
+  }
+
+  .debug-bar {
+    grid-area: debug-bar;
+  }
+}
+
+html {
+  font-family: var(--font-family-sans);
+  font-size: 100%;
+  color: var(--theme-color);
+  background-color: var(--theme-background-color);
+
+  @media (--large) {
+    font-size: 110%;
+  }
+}

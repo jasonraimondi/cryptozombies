@@ -1,10 +1,10 @@
-import { ethers } from "ethers";
 import type { Web3Provider } from "@ethersproject/providers";
-
-import { walletService } from "$lib/machines/wallet";
 import type { ZombieOwnership } from "@jmondi/cryptozombies/typechain";
-import { store } from "$lib/store";
+import { ethers } from "ethers";
+
 import { ZombieOwnershipArtifact } from "$lib/api/zombie_ownership";
+import { walletService } from "$lib/machines/wallet";
+import { store } from "$lib/store";
 
 export let provider: Web3Provider;
 export let zombieOwnership: ZombieOwnership;
