@@ -1,42 +1,27 @@
 <script lang="ts">
-  import { store } from "$lib/store";
-  import { getZombie, getZombies } from "$lib/api/zombie_ownership";
+  import { getAllZombiesForAddress } from "$lib/api/zombie_ownership";
+  import { onMount } from "svelte";
+  import CreateZombie from "$lib/components/CreateZombie.svelte";
+  import { store, zombies } from "$lib/store";
 
-  let zombie;
-  let zombies = [];
+  onMount(async () => {
+    await getAllZombiesForAddress($store.currentAddress);
+  });
 
-  async function find() {
-    const address = $store.currentAddress;
-    zombies = await getZombies(address);
-    if (zombies[0]) {
-      zombie = await getZombie(zombies[0]);
-    }
-  }
+  $: zombieIds = Object.keys($zombies)
+  $: zombieValues = Object.values($zombies)
+  $: isFirstZombie = zombieIds.length === 0;
 </script>
 
-<button on:click={find}>Find Zombie</button>
+<ul>
+  <li>Zombies</li>
+  <li>count: {zombieIds.length}</li>
+  {#each zombieValues as zombie}
+    <li>{JSON.stringify(zombie, null, 2)}</li>
+  {/each}
+</ul>
 
-{#if zombies}
-  <ul>
-    {#each zombies as z}
-      <li>id: {z.toString()}</li>
-    {/each}
-  </ul>
+{#if isFirstZombie}
+  <h4>Create Your First Zombie!</h4>
+  <CreateZombie />
 {/if}
-
-{#if zombie}
-  <ul class="well">
-    <li>id: {zombie.id}</li>
-    <li>dna: {zombie.dna}</li>
-    <li>name: {zombie.name}</li>
-    <li>winCount: {zombie.winCount}</li>
-    <li>lossCount: {zombie.lossCount}</li>
-  </ul>
-{/if}
-
-<style>
-  .well {
-    background-color: tomato;
-    color: white;
-  }
-</style>

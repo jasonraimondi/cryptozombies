@@ -67,11 +67,13 @@ importers:
       '@ethersproject/providers': ^5.5.0
       '@ethersproject/solidity': ^5.5.0
       '@jmondi/cryptozombies': workspace:^0.0.1
+      '@jmondi/form-validator': ^1.0.1
       '@jmondi/mobile-first': ^1.0.2
       '@sveltejs/kit': ^1.0.0-next.192
       autoprefixer: ^10.4.0
       dotenv: ^10.0.0
       ethers: ^5.5.1
+      joi: ^17.4.2
       normalize.css: ^8.0.1
       postcss-custom-media: ^8.0.0
       postcss-import: ^14.0.2
@@ -94,8 +96,10 @@ importers:
       '@ethersproject/providers': 5.5.0
       '@ethersproject/solidity': 5.5.0
       '@jmondi/cryptozombies': link:../dapp
+      '@jmondi/form-validator': 1.0.1_joi@17.4.2
       dotenv: 10.0.0
       ethers: 5.5.1
+      joi: 17.4.2
       xstate: 4.25.0
     devDependencies:
       '@jmondi/mobile-first': 1.0.2
@@ -612,6 +616,24 @@ packages:
       '@ethersproject/properties': 5.5.0
       '@ethersproject/strings': 5.5.0
 
+  /@hapi/hoek/9.2.1:
+    resolution: {integrity: sha512-gfta+H8aziZsm8pZa0vj04KO6biEiisppNgA1kbJvFrrWu9Vm7eaUEy76DIxsuTaWvti5fkJVhllWc6ZTE+Mdw==}
+    dev: false
+
+  /@hapi/topo/5.1.0:
+    resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
+    dependencies:
+      '@hapi/hoek': 9.2.1
+    dev: false
+
+  /@jmondi/form-validator/1.0.1_joi@17.4.2:
+    resolution: {integrity: sha512-besHO33oKvTYosBSfXoy/FJvQrXRqZM8hCIXzaRUcXJfyVp+qo95iIbnrgyKZaHAC9uldeJQAS6nDQkFVQuXKA==}
+    peerDependencies:
+      joi: ^17.4.2
+    dependencies:
+      joi: 17.4.2
+    dev: false
+
   /@jmondi/mobile-first/1.0.2:
     resolution: {integrity: sha512-1+p5VuGQ6vNp7ze5iJO3K0GwkS8Ce8XE4Ya62arysPaLcZGqHqqKRVU5Hfw52UbARqeThfzghka+7/xEsOTshg==}
     dev: true
@@ -794,6 +816,20 @@ packages:
       '@sentry/types': 5.30.0
       tslib: 1.14.1
     dev: true
+
+  /@sideway/address/4.1.2:
+    resolution: {integrity: sha512-idTz8ibqWFrPU8kMirL0CoPH/A29XOzzAzpyN3zQ4kAWnzmNfFmRaoMNN6VI8ske5M73HZyhIaW4OuSFIdM4oA==}
+    dependencies:
+      '@hapi/hoek': 9.2.1
+    dev: false
+
+  /@sideway/formula/3.0.0:
+    resolution: {integrity: sha512-vHe7wZ4NOXVfkoRb8T5otiENVlT7a3IAiw7H5M2+GO+9CDgcVUUsX1zalAztCmwyOr2RUTGJdgB+ZvSVqmdHmg==}
+    dev: false
+
+  /@sideway/pinpoint/2.0.0:
+    resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
+    dev: false
 
   /@sindresorhus/is/0.14.0:
     resolution: {integrity: sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==}
@@ -5615,6 +5651,16 @@ packages:
       has-to-string-tag-x: 1.4.1
       is-object: 1.0.2
     dev: true
+
+  /joi/17.4.2:
+    resolution: {integrity: sha512-Lm56PP+n0+Z2A2rfRvsfWVDXGEWjXxatPopkQ8qQ5mxCEhwHG+Ettgg5o98FFaxilOxozoa14cFhrE/hOzh/Nw==}
+    dependencies:
+      '@hapi/hoek': 9.2.1
+      '@hapi/topo': 5.1.0
+      '@sideway/address': 4.1.2
+      '@sideway/formula': 3.0.0
+      '@sideway/pinpoint': 2.0.0
+    dev: false
 
   /js-sha3/0.5.7:
     resolution: {integrity: sha1-DU/9gALVMzqrr0oj7tL2N0yfKOc=}

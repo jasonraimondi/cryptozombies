@@ -2,7 +2,7 @@
   "name": "web",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev --port 3001",
+    "dev": "svelte-kit dev --port 3002",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
@@ -19,8 +19,10 @@
     "@ethersproject/providers": "^5.5.0",
     "@ethersproject/solidity": "^5.5.0",
     "@jmondi/cryptozombies": "workspace:^0.0.1",
+    "@jmondi/form-validator": "^1.0.1",
     "dotenv": "^10.0.0",
     "ethers": "^5.5.1",
+    "joi": "^17.4.2",
     "xstate": "^4.25.0"
   },
   "devDependencies": {
