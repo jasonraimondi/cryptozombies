@@ -4,27 +4,31 @@
 
   import { onMount } from "svelte";
 
-  import { initEthereum } from "$lib/ethereum";
-  import { walletService } from "$lib/machines/wallet";
-
-  import Debugger from "$lib/components/Debugger.svelte";
+  import { walletMachine } from "$lib/services/wallet_machine";
+  import Debugger from "$lib/components/debugger/Debugger.svelte";
   import ConnectWallet from "$lib/components/ConnectWallet.svelte";
+  import { initializeEthereum } from "$lib/services/ethereum_service";
 
   onMount(() => {
-    initEthereum();
+    if (window.ethereum) {
+      initializeEthereum();
+    } else {
+      window.addEventListener("ethereum#initialized", initializeEthereum, { once: true });
+      setTimeout(initializeEthereum, 3000);
+    }
   });
 </script>
 
 <main>
-  {#if $walletService.matches("init")}
+  {#if $walletMachine.matches("init")}
     <p>Checking for Ethereum</p>
-  {:else if $walletService.matches("no_ethereum")}
+  {:else if $walletMachine.matches("no_ethereum")}
     <p>Install Metamask to get started</p>
-  {:else if $walletService.matches("ethereum")}
+  {:else if $walletMachine.matches("ethereum")}
     <ConnectWallet />
-  {:else if $walletService.matches("no_wallet")}
+  {:else if $walletMachine.matches("no_wallet")}
     <p>I couldnt find a wallet address...</p>
-  {:else if $walletService.matches("with_wallet")}
+  {:else if $walletMachine.matches("with_wallet")}
     <!-- Show the application after the wallet has been identified -->
     <slot />
   {:else}

@@ -2,7 +2,7 @@
   "name": "web",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev --port 3002",
+    "dev": "svelte-kit dev --port 3000",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
@@ -20,10 +20,10 @@
     "@ethersproject/solidity": "^5.5.0",
     "@jmondi/cryptozombies": "workspace:^0.0.1",
     "@jmondi/form-validator": "^1.0.1",
+    "@xstate/fsm": "^1.6.2",
     "dotenv": "^10.0.0",
     "ethers": "^5.5.1",
-    "joi": "^17.4.2",
-    "xstate": "^4.25.0"
+    "joi": "^17.4.2"
   },
   "devDependencies": {
     "@jmondi/mobile-first": "^1.0.2",
@@ -32,11 +32,12 @@
     "normalize.css": "^8.0.1",
     "postcss-custom-media": "^8.0.0",
     "postcss-import": "^14.0.2",
+    "postcss-load-config": "^3.1.0",
     "postcss-mixins": "^8.1.0",
     "postcss-nested": "^5.0.6",
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
-    "svelte": "^3.44.0",
+    "svelte": "^3.44.1",
     "svelte-check": "^2.2.8",
     "svelte-preprocess": "^4.9.8",
     "tslib": "^2.3.1",

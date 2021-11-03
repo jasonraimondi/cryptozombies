@@ -1,9 +1,5 @@
 import { writable } from "svelte/store";
 
-type State = {
-  currentAddress?: string;
-};
-
-export const store = writable<State>({});
+export const currentAddress = writable<string>();
 
 export const zombies = writable<Record<string, any>>({});

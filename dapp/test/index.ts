@@ -5,7 +5,6 @@ import type { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import type { Contract } from "ethers";
 
 describe("ZombieOwnership", function () {
-
   let zombies: Contract;
   let owner: SignerWithAddress;
   let addr1: SignerWithAddress;

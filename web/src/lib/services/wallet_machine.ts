@@ -1,6 +1,6 @@
-import { createMachine, interpret } from "xstate";
+import { createMachine, interpret } from "@xstate/fsm";
 
-const walletMachine = createMachine({
+const machine = createMachine({
   id: "wallet",
   initial: "init",
   states: {
@@ -16,16 +16,10 @@ const walletMachine = createMachine({
         WALLET_ADDRESS_NOT_FOUND: "no_wallet",
       },
     },
-    no_ethereum: {
-      type: "final",
-    },
-    no_wallet: {
-      type: "final",
-    },
-    with_wallet: {
-      type: "final",
-    },
+    no_ethereum: {},
+    no_wallet: {},
+    with_wallet: {},
   },
 });
 
-export const walletService = interpret(walletMachine).start();
+export const walletMachine = interpret(machine).start();

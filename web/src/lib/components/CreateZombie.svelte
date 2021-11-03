@@ -1,18 +1,27 @@
 <script lang="ts">
-  import { validateForm } from "@jmondi/form-validator";
+  import joi from "joi";
+  import { createForm, validateForm } from "@jmondi/form-validator";
+  import { getZombieService } from "$lib/services/zombie_service";
+  import { currentAddress } from "$lib/store";
 
-  import { createZombie } from "$lib/api/zombie_ownership";
-  import { createZombieSchema } from "$lib/forms";
+  type FormData = {
+    zombieName: string;
+  };
 
-  const data = {
+  let formData = {
     zombieName: "",
   };
 
-  let errors: Record<string, string> = {};
+  const createZombieSchema = createForm<FormData>({
+    zombieName: joi.string().min(3).max(200).required(),
+  });
+
+  let errors: Record<string, string>;
 
   async function submit() {
-    errors = await validateForm({ schema: createZombieSchema, data });
-    if (!errors) await createZombie(data.zombieName);
+    errors = await validateForm({ schema: createZombieSchema, data: formData });
+    if (!errors) await getZombieService().createZombie(formData.zombieName);
+    await getZombieService().storeZombies($currentAddress);
   }
 </script>
 
@@ -28,7 +37,7 @@
       required="required"
       aria-label="zombie-name"
       aria-required="true"
-      bind:value={data.zombieName}
+      bind:value={formData.zombieName}
     />
   </div>
 
