@@ -1,25 +1,52 @@
 <script lang="ts">
+  import { onDestroy, onMount } from "svelte";
+
   import CreateZombie from "$lib/components/CreateZombie.svelte";
   import { currentAddress, zombies } from "$lib/store";
   import { getZombieService } from "$lib/services/zombie_service";
 
+  const zombieService = getZombieService();
+
   let z: any = [];
-  $: isFirstZombie = $zombies.length === 0;
-  $: {
-    getZombieService().storeZombies($currentAddress);
-  }
 
   async function doIt() {
     const result = await getZombieService().attack("0", "1");
-    console.log(result);
+    console.log("AttackResult", result);
+  }
+
+  $: {
+    getZombieService().storeZombies($currentAddress);
   }
 
   $: getZombieService()
     .listAllZombies()
     .then(zombies => (z = zombies));
+
+  onMount(() => {
+    zombieService.contract.on("Transfer", (transfer) => {
+      console.log("Transfer", transfer);
+    });
+
+    zombieService.contract.on("BattleWin", (zombieId) => {
+      console.log("BattleWin", zombieId);
+    });
+
+    zombieService.contract.on("BattleLoss", (zombieId) => {
+      console.log("BattleLoss", zombieId);
+    });
+  });
+
+  onDestroy(() => {
+    zombieService.contract.removeAllListeners();
+  });
 </script>
 
-{#if isFirstZombie}
+
+
+  <h4>Create Your First Zombie!</h4>
+  <CreateZombie />
+
+{#if $zombies.length === 0}
   <h4>Create Your First Zombie!</h4>
   <CreateZombie />
 {:else}

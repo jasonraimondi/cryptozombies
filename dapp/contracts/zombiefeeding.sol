@@ -23,7 +23,7 @@ contract ZombieFeeding is ZombieFactory {
   KittyInterface kittyContract;
 
   modifier onlyOwnerOf(uint _zombieId) {
-    require(msg.sender == zombieToOwner[_zombieId]);
+    require(msg.sender == zombieToOwner[_zombieId], "you are not the owner of this zombie");
     _;
   }
 

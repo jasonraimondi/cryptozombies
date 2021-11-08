@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@jmondi/mobile-first": "^1.0.2",
-    "@sveltejs/kit": "^1.0.0-next.192",
+    "@sveltejs/kit": "^1.0.0-next.195",
     "autoprefixer": "^10.4.0",
     "normalize.css": "^8.0.1",
     "postcss-custom-media": "^8.0.0",

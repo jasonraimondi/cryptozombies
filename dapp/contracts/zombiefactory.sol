@@ -3,7 +3,6 @@ pragma solidity ^0.8.0;
 
 import "./ownable.sol";
 import "./safemath.sol";
-import "hardhat/console.sol";
 
 contract ZombieFactory is Ownable {
 
@@ -40,9 +39,7 @@ contract ZombieFactory is Ownable {
 
   function _createZombie(string memory _name, uint _dna) internal {
     zombies.push(Zombie(_name, _dna, 1, uint32(block.timestamp + cooldownTime), 0, 0));
-    console.log("zombies length %s", zombies.length);
     uint id = zombies.length - 1;
-    console.log("zombies id %s", id);
     zombieToOwner[id] = msg.sender;
     ownerZombieCount[msg.sender] = ownerZombieCount[msg.sender].add(1);
     emit NewZombie(id, _name, _dna);

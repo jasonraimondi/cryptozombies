@@ -9,28 +9,32 @@ import { withFancyErrorMessages } from "$lib/utils/fancy_error_messages";
 import { Zombie } from "$lib/models/zombie";
 
 export class ZombieService {
-  constructor(private readonly contract: ZombieOwnership) {}
+  constructor(private readonly _contract: ZombieOwnership) {}
+
+  get contract(): ZombieOwnership {
+    return this._contract;
+  }
 
   async listZombieIds(address: string): Promise<BigNumber[]> {
-    return withFancyErrorMessages(this.contract.getZombiesByOwner(address));
+    return withFancyErrorMessages(this._contract.getZombiesByOwner(address));
   }
 
   async getZombie(zombieId: string | BigNumber) {
     zombieId = typeof zombieId === "string" ? zombieId : zombieId.toString();
-    const res = await withFancyErrorMessages(this.contract.zombies(zombieId));
+    const res = await withFancyErrorMessages(this._contract.zombies(zombieId));
     return Zombie.fromContract(zombieId, res);
   }
 
   async createZombie(name: string) {
-    await withFancyErrorMessages(this.contract.createRandomZombie(name));
+    await withFancyErrorMessages(this._contract.createRandomZombie(name));
   }
 
   async attack(zombieId: string | BigNumber, targetId: string | BigNumber) {
-    return withFancyErrorMessages(this.contract.attack(zombieId, targetId));
+    return withFancyErrorMessages(this._contract.attack(zombieId, targetId));
   }
 
   async listAllZombies() {
-    return withFancyErrorMessages(this.contract.getAllZombies());
+    return withFancyErrorMessages(this._contract.getAllZombies());
   }
 
   async listZombiesForAddress(address: string): Promise<Zombie[]> {
@@ -52,7 +56,7 @@ export class ZombieService {
   }
 
   async getZombieOwner(zombieId: string | BigNumber) {
-    return withFancyErrorMessages(this.contract.zombieToOwner(zombieId));
+    return withFancyErrorMessages(this._contract.zombieToOwner(zombieId));
   }
 }
 
